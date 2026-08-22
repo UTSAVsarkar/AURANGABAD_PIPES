@@ -238,6 +238,7 @@ export default function People() {
                 minHeight: "100vh",
                 color: INK,
                 overflowX: "hidden",
+                p: "1rem",
                 background: `
                     radial-gradient(circle at 50% 0%, rgba(201,161,92,0.07), transparent 35%),
                     linear-gradient(160deg, #090B10 0%, #11141B 55%, #181B23 100%)
