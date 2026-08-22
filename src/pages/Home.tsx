@@ -66,7 +66,7 @@ const Home: React.FC<Props> = ({ onNavChange }) => {
                     }}
                 >
                     <source
-                        src={`${process.env.PUBLIC_URL}/APPL_video.mov`}
+                        src={`${process.env.PUBLIC_URL}/APPL_video.mp4`}
                         type="video/mp4"
                     />
                 </video>
