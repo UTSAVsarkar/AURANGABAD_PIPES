@@ -79,14 +79,12 @@ const Home: React.FC<Props> = ({ onNavChange }) => {
                         background: "rgba(0, 0, 0, 0.25)",
                         zIndex: 1,
                     }}
-                />
+                >
+                    <BrandReveal />
 
-                <div style={{ position: "absolute", inset: 0, background: "rgba(0, 0, 0, 0.25)", zIndex: 1 }} />
-
-                <BrandReveal />
-
-                {/* Scroll indicator */}
-                <ScrollIndicator />
+                    {/* Scroll indicator */}
+                    <ScrollIndicator />
+                </div>
             </div>
 
             <AboutUsIntro onNavChange={onNavChange} />
