@@ -1,4 +1,3 @@
-import { motion, useScroll, useTransform } from "framer-motion";
 import Contact from "./Contact/Contact";
 import AboutUsIntro from "../IntroPages/AboutIntro/AboutUsIntro";
 import ProjectsIntro from "../IntroPages/ProjectIntro/ProjectsIntro";
@@ -15,9 +14,6 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ onNavChange }) => {
-    const { scrollY } = useScroll();
-    const bgY = useTransform(scrollY, [0, 500], ["0%", "50%"]);
-
     // ...inside your component:
     const videoRef = useRef<HTMLVideoElement>(null);
 
