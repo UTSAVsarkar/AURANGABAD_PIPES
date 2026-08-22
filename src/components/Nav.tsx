@@ -27,6 +27,10 @@ import PersonAddRoundedIcon from '@mui/icons-material/PersonAddRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded';
+import AppsRoundedIcon from '@mui/icons-material/AppsRounded';
+import Inventory2RoundedIcon from '@mui/icons-material/Inventory2Rounded';
+import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import DescriptionRoundedIcon from '@mui/icons-material/DescriptionRounded';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { SvgIconComponent } from '@mui/icons-material';
@@ -58,6 +62,10 @@ const iconMap: { keywords: string[]; Icon: SvgIconComponent }[] = [
   { keywords: ['signup', 'sign up', 'register', 'join'], Icon: PersonAddRoundedIcon },
   { keywords: ['dashboard', 'account'], Icon: DashboardRoundedIcon },
   { keywords: ['feature', 'why'], Icon: StarRoundedIcon },
+  { keywords: ['application'], Icon: AppsRoundedIcon },
+  { keywords: ['product'], Icon: Inventory2RoundedIcon },
+  { keywords: ['setting', 'config'], Icon: SettingsRoundedIcon },
+  { keywords: ['doc', 'document'], Icon: DescriptionRoundedIcon },
 ];
 
 function getNavIcon(label: string): SvgIconComponent {
