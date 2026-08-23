@@ -119,7 +119,7 @@ export default function Nav(props: Props) {
       >
         <Box
           component="img"
-          src={`${process.env.PUBLIC_URL}/logo.svg`}
+          src={`${process.env.PUBLIC_URL}/logo.png`}
           alt="logo"
           sx={{ height: 34 }}
         />
@@ -287,30 +287,43 @@ export default function Nav(props: Props) {
           <Box sx={{ display: 'flex', flexGrow: 1, justifyContent: { xs: 'flex-end', sm: 'flex-start' } }}>
             <Box
               component="img"
-              src={`${process.env.PUBLIC_URL}/logo.svg`}
+              src={`${process.env.PUBLIC_URL}/logo.png`}
               alt="logo"
-              sx={{ height: 50, cursor: 'pointer' }}
+              sx={{ height: 60, cursor: 'pointer' }}
               onClick={() => onNavChange('Home')}
             />
           </Box>
 
-          {/* Desktop Nav Buttons */}
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                onClick={() => handleNavItemClick(item)}
-                sx={{
-                  color: activeItem === item ? Color.blueGrey : '#fff',
-                  fontWeight: activeItem === item ? 'bold' : 'normal',
-                  '&:hover': {
-                    color: Color.blueGrey,
-                  },
-                }}
-              >
-                {item}
-              </Button>
-            ))}
+          {/* Desktop Nav Buttons — active item gets a circular/pill highlight */}
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 0.75 }}>
+            {navItems.map((item) => {
+              const isActive = activeItem === item;
+              return (
+                <Button
+                  key={item}
+                  onClick={() => handleNavItemClick(item)}
+                  sx={{
+                    color: isActive ? '#0a0a0c' : '#fff',
+                    fontWeight: isActive ? 700 : 500,
+                    borderRadius: '999px',
+                    px: 2,
+                    py: 0.6,
+                    minWidth: 0,
+                    backgroundColor: isActive ? Color.blueGrey : 'transparent',
+                    boxShadow: isActive ? `0 0 16px 1px ${Color.blueGrey}66` : 'none',
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      backgroundColor: isActive
+                        ? Color.blueGrey
+                        : 'rgba(255,255,255,0.08)',
+                      color: isActive ? '#0a0a0c' : Color.blueGrey,
+                    },
+                  }}
+                >
+                  {item}
+                </Button>
+              );
+            })}
           </Box>
         </Toolbar>
       </AppBar>
