@@ -25,6 +25,9 @@ function App() {
   // Lead popup
   const [showLeadPopup, setShowLeadPopup] = useState(false);
 
+  // Lead form loading state
+  const [leadLoading, setLeadLoading] = useState(false);
+
   // =========================================
   // SHOW POPUP AFTER 4 SECONDS
   // =========================================
@@ -40,12 +43,88 @@ function App() {
   }, []);
 
 
+  // =========================================
+  // NAVIGATION
+  // =========================================
+
   const handleNavChange = (item: string) => {
 
     setActiveNavItem(item);
 
   };
 
+
+  // =========================================
+  // LEAD FORM SUBMIT
+  // =========================================
+
+  const handleLeadSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+
+    event.preventDefault();
+
+    setLeadLoading(true);
+
+    const form = event.currentTarget;
+
+    const formData = new FormData(form);
+
+    try {
+
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        // Clear the form
+        form.reset();
+
+        // Close popup
+        setShowLeadPopup(false);
+
+      } else {
+
+        console.error(
+          "Web3Forms error:",
+          data
+        );
+
+        alert(
+          data.message ||
+          "Something went wrong. Please try again."
+        );
+      }
+
+    } catch (error) {
+
+      console.error(
+        "Submission error:",
+        error
+      );
+
+      alert(
+        "Unable to send your enquiry. Please try again."
+      );
+
+    } finally {
+
+      setLeadLoading(false);
+
+    }
+  };
+
+
+  // =========================================
+  // RENDER PAGE
+  // =========================================
 
   const renderPage = () => {
 
@@ -56,8 +135,10 @@ function App() {
 
       case 'About Us':
         return <AboutUs />;
+
       case 'People':
         return <People />;
+
       case 'Services':
         return <Services />;
 
@@ -81,11 +162,20 @@ function App() {
   return (
     <>
 
+      {/* =========================================
+          NAVIGATION
+      ========================================= */}
+
       <Nav
         navItems={navItems}
         activeItem={activeNavItem}
         onNavChange={handleNavChange}
       />
+
+
+      {/* =========================================
+          PAGE
+      ========================================= */}
 
       {renderPage()}
 
@@ -103,115 +193,210 @@ function App() {
             {/* CLOSE */}
 
             <button
+              type="button"
               className="lead-close"
               onClick={() => setShowLeadPopup(false)}
+              disabled={leadLoading}
             >
               ×
             </button>
 
 
-            {/* CONTENT */}
+            {/* ==================================================
+                LEAD FORM
+            ================================================== */}
 
-            <div className="lead-content">
+            <form onSubmit={handleLeadSubmit}>
 
-              <div className="lead-eyebrow">
-                LET'S CONNECT
-              </div>
+              {/* =========================================
+                  WEB3FORMS ACCESS KEY
+              ========================================= */}
 
-              <h2>
-                Tell us about
-                <br />
-                <span>your project.</span>
-              </h2>
+              <input
+                type="hidden"
+                name="access_key"
+                value="016adc29-c890-48ed-a8de-bf434a580123"
+              />
 
-              <p className="lead-description">
-                Share your details and we'll get back to you shortly.
-              </p>
 
-              {/* FIRST + LAST NAME */}
+              {/* =========================================
+                  CONSTANT EMAIL SUBJECT
+              ========================================= */}
 
-              <div className="lead-row">
+              <input
+                type="hidden"
+                name="subject"
+                value="New Website Enquiry"
+              />
 
-                <div className="lead-field">
-                  <label>FIRST NAME</label>
 
-                  <input
-                    type="text"
-                    placeholder="First name"
-                  />
+              {/* =========================================
+                  BOT PROTECTION
+              ========================================= */}
+
+              <input
+                type="checkbox"
+                name="botcheck"
+                style={{ display: "none" }}
+              />
+
+
+              {/* CONTENT */}
+
+              <div className="lead-content">
+
+                <div className="lead-eyebrow">
+                  LET'S CONNECT
                 </div>
 
-                <div className="lead-field">
-                  <label>LAST NAME</label>
 
-                  <input
-                    type="text"
-                    placeholder="Last name"
-                  />
+                <h2>
+                  Tell us about
+                  <br />
+                  <span>your project.</span>
+                </h2>
+
+
+                <p className="lead-description">
+                  Share your details and we'll get back to you shortly.
+                </p>
+
+
+                {/* =========================================
+                    FIRST + LAST NAME
+                ========================================= */}
+
+                <div className="lead-row">
+
+                  <div className="lead-field">
+
+                    <label>
+                      FIRST NAME
+                    </label>
+
+                    <input
+                      type="text"
+                      name="firstName"
+                      placeholder="First name"
+                      required
+                      disabled={leadLoading}
+                    />
+
+                  </div>
+
+
+                  <div className="lead-field">
+
+                    <label>
+                      LAST NAME
+                    </label>
+
+                    <input
+                      type="text"
+                      name="lastName"
+                      placeholder="Last name"
+                      required
+                      disabled={leadLoading}
+                    />
+
+                  </div>
+
                 </div>
 
+
+                {/* =========================================
+                    EMAIL
+                ========================================= */}
+
+                <div className="lead-field">
+
+                  <label>
+                    EMAIL
+                  </label>
+
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                    disabled={leadLoading}
+                  />
+
+                </div>
+
+
+                {/* =========================================
+                    PHONE
+                ========================================= */}
+
+                <div className="lead-field">
+
+                  <label>
+                    PHONE NUMBER
+                  </label>
+
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    placeholder="+91 XXXXX XXXXX"
+                    disabled={leadLoading}
+                  />
+
+                </div>
+
+
+                {/* =========================================
+                    MESSAGE
+                ========================================= */}
+
+                <div className="lead-field">
+
+                  <label>
+                    MESSAGE
+                  </label>
+
+                  <textarea
+                    name="message"
+                    placeholder="Tell us about your requirement..."
+                    rows={3}
+                    required
+                    disabled={leadLoading}
+                  />
+
+                </div>
+
+
+                {/* =========================================
+                    SUBMIT
+                ========================================= */}
+
+                <button
+                  type="submit"
+                  className="lead-submit"
+                  disabled={leadLoading}
+                >
+
+                  <span>
+                    {leadLoading
+                      ? "Sending..."
+                      : "Send Enquiry"
+                    }
+                  </span>
+
+
+                  {!leadLoading && (
+
+                    <span className="lead-arrow">
+                      ↗
+                    </span>
+
+                  )}
+
+                </button>
+
               </div>
 
-
-              {/* EMAIL */}
-
-              <div className="lead-field">
-
-                <label>EMAIL</label>
-
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                />
-
-              </div>
-
-
-              {/* PHONE */}
-
-              <div className="lead-field">
-
-                <label>PHONE NUMBER</label>
-
-                <input
-                  type="tel"
-                  placeholder="+91 XXXXX XXXXX"
-                />
-
-              </div>
-
-
-              {/* MESSAGE */}
-
-              <div className="lead-field">
-
-                <label>MESSAGE</label>
-
-                <textarea
-                  placeholder="Tell us about your requirement..."
-                  rows={3}
-                />
-
-              </div>
-
-
-              {/* SUBMIT */}
-
-              <button
-                className="lead-submit"
-                onClick={() => {
-                  // Submit form here
-                  setShowLeadPopup(false);
-                }}
-              >
-                <span>Send Enquiry</span>
-
-                <span className="lead-arrow">
-                  ↗
-                </span>
-              </button>
-
-            </div>
+            </form>
 
           </div>
 
@@ -373,6 +558,15 @@ function App() {
         }
 
 
+        .lead-close:disabled {
+
+          cursor: not-allowed;
+
+          opacity: 0.5;
+
+        }
+
+
         /* =========================================
            CONTENT
         ========================================= */
@@ -449,6 +643,24 @@ function App() {
         /* =========================================
            FORM
         ========================================= */
+
+        .lead-row {
+
+          display: flex;
+
+          gap: 14px;
+
+        }
+
+
+        .lead-row .lead-field {
+
+          flex: 1;
+
+          min-width: 0;
+
+        }
+
 
         .lead-field {
 
@@ -540,6 +752,16 @@ function App() {
         }
 
 
+        .lead-field input:disabled,
+        .lead-field textarea:disabled {
+
+          opacity: 0.6;
+
+          cursor: not-allowed;
+
+        }
+
+
         /* =========================================
            SUBMIT
         ========================================= */
@@ -590,6 +812,19 @@ function App() {
         }
 
 
+        .lead-submit:disabled {
+
+          cursor: not-allowed;
+
+          opacity: 0.6;
+
+          transform: none;
+
+          box-shadow: none;
+
+        }
+
+
         .lead-arrow {
 
           font-size: 18px;
@@ -616,11 +851,15 @@ function App() {
         @keyframes leadOverlayIn {
 
           from {
+
             opacity: 0;
+
           }
 
           to {
+
             opacity: 1;
+
           }
 
         }
@@ -663,15 +902,26 @@ function App() {
 
           }
 
+
           .lead-content h2 {
 
             font-size: 29px;
 
           }
 
+
           .lead-popup {
 
             max-height: 92vh;
+
+          }
+
+
+          .lead-row {
+
+            flex-direction: column;
+
+            gap: 0;
 
           }
 
