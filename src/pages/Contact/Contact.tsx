@@ -61,6 +61,10 @@ const Contact = () => {
     const [open, setOpen] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
 
+    React.useEffect(() => {
+        console.log("KEY:", process.env.REACT_APP_NOT_SECRET_CODE);
+    }, []);
+
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
@@ -433,7 +437,7 @@ const Contact = () => {
                     <input
                         type="hidden"
                         name="access_key"
-                        value="016adc29-c890-48ed-a8de-bf434a580123"
+                        value={process.env.REACT_APP_WEB3FORMS_ACCESS_KEY}
                     />
 
                     {/* CONSTANT EMAIL SUBJECT */}
