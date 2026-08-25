@@ -284,11 +284,11 @@ const Contact = () => {
                                 </Typography>
 
                                 <Typography sx={{ fontSize: 15 }}>
-                                    500 Terry Francine Street
+                                    Gut No. 35, Rahimpur, Jikthan Phata
                                 </Typography>
 
                                 <Typography sx={{ fontSize: 15 }}>
-                                    San Francisco, CA 94158
+                                    Tq. Gangapur, Dist. Chh. Sambhajinagar
                                 </Typography>
                             </Box>
                         </Box>
@@ -321,7 +321,7 @@ const Contact = () => {
                                 </Typography>
 
                                 <Typography sx={{ fontSize: 15 }}>
-                                    123-456-7890
+                                    8888891273
                                 </Typography>
                             </Box>
                         </Box>
@@ -354,7 +354,7 @@ const Contact = () => {
                                 </Typography>
 
                                 <Typography sx={{ fontSize: 15 }}>
-                                    info@mysite.com
+                                    marketing@aurangabadppl.in
                                 </Typography>
                             </Box>
                         </Box>
