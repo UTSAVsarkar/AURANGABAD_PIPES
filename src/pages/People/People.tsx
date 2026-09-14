@@ -15,55 +15,32 @@ interface Person {
 }
 
 const orgData: Person = {
-    id: "ceo",
-    name: "Elena Marsh",
-    title: "Chief Executive Officer",
-    dept: "Executive",
+    id: "md",
+    name: "Yash Ladda",
+    title: "Managing Director",
+    dept: "Marketing, NPD",
     color: "#C9A15C",
     reports: [
         {
-            id: "cto",
-            name: "Daniel Osei",
-            title: "Chief Technology Officer",
-            dept: "Engineering",
+            id: "dir-hr",
+            name: "Radhar Rathi",
+            title: "Director",
+            dept: "HR, Toolings",
             color: "#4FB6A8",
-            reports: [
-                { id: "vp-eng", name: "Maya Lindqvist", title: "VP, Platform Engineering", dept: "Engineering", color: "#4FB6A8" },
-                { id: "dir-data", name: "Rosa Ferreira", title: "Director, Data & AI", dept: "Engineering", color: "#4FB6A8" },
-            ],
         },
         {
-            id: "cfo",
-            name: "Grace Whitfield",
-            title: "Chief Financial Officer",
-            dept: "Finance",
+            id: "dir-purchase",
+            name: "Pranav Rathi",
+            title: "Director",
+            dept: "Purchase",
             color: "#CB6E3F",
-            reports: [
-                { id: "vp-fin", name: "Owen Baptiste", title: "VP, Finance & Treasury", dept: "Finance", color: "#CB6E3F" },
-                { id: "dir-fpna", name: "Nina Kowalski", title: "Director, FP&A", dept: "Finance", color: "#CB6E3F" },
-            ],
         },
         {
-            id: "coo",
-            name: "Marcus Chen",
-            title: "Chief Operating Officer",
-            dept: "Operations",
+            id: "dir-accounts",
+            name: "Laxmikant Karwa",
+            title: "Director",
+            dept: "Accounts",
             color: "#8B7FD6",
-            reports: [
-                { id: "vp-ops", name: "Aisha Rahman", title: "VP, Global Operations", dept: "Operations", color: "#8B7FD6" },
-                { id: "dir-people", name: "Leo Vantongeren", title: "Director, People Ops", dept: "Operations", color: "#8B7FD6" },
-            ],
-        },
-        {
-            id: "cmo",
-            name: "Sofia Alvarez",
-            title: "Chief Marketing Officer",
-            dept: "Marketing",
-            color: "#E2717A",
-            reports: [
-                { id: "vp-brand", name: "Theo Bergman", title: "VP, Brand & Growth", dept: "Marketing", color: "#E2717A" },
-                { id: "dir-comms", name: "Priya Natarajan", title: "Director, Communications", dept: "Marketing", color: "#E2717A" },
-            ],
         },
     ],
 };
@@ -114,7 +91,7 @@ function Avatar({ person, size, filled }: { person: Person; size: number; filled
 // ============================================================================
 
 function PersonCard({ person, level }: { person: Person; level: 0 | 1 | 2 }) {
-    // level 0 = CEO, level 1 = department head, level 2 = report
+    // level 0 = CEO/MD, level 1 = department head, level 2 = report
     if (level === 2) {
         return (
             <Box
@@ -164,7 +141,7 @@ function PersonCard({ person, level }: { person: Person; level: 0 | 1 | 2 }) {
         );
     }
 
-    // level 0 — CEO
+    // level 0 — Managing Director
     return (
         <Box
             sx={{
@@ -209,16 +186,16 @@ function Department({ person }: { person: Person }) {
             </Box>
 
             {/* head */}
-            <Box sx={{ mb: 1.25, pl: 1.5, borderLeft: `2px solid ${person.color}55` }}>
-                <PersonCard person={person} level={1} />
-            </Box>
+            <PersonCard person={person} level={1} />
 
-            {/* reports */}
-            <Box sx={{ ml: 2, pl: 1.5, borderLeft: "1px solid rgba(255,255,255,0.09)", display: "flex", flexDirection: "column", gap: 1 }}>
-                {person.reports?.map((r) => (
-                    <PersonCard key={r.id} person={r} level={2} />
-                ))}
-            </Box>
+            {/* reports (only rendered if present) */}
+            {person.reports && person.reports.length > 0 && (
+                <Box sx={{ mt: 1.25, ml: 2, pl: 1.5, borderLeft: "1px solid rgba(255,255,255,0.09)", display: "flex", flexDirection: "column", gap: 1 }}>
+                    {person.reports.map((r) => (
+                        <PersonCard key={r.id} person={r} level={2} />
+                    ))}
+                </Box>
+            )}
         </Box>
     );
 }
@@ -261,7 +238,7 @@ export default function People() {
 
             {/* tree */}
             <Box sx={{ width: "100%", maxWidth: 1100, mx: "auto", px: { xs: 2, sm: 4 }, pb: { xs: 7, sm: 10 } }}>
-                {/* CEO + spine */}
+                {/* MD + spine */}
                 <Box
                     sx={{
                         position: "relative",
@@ -285,8 +262,8 @@ export default function People() {
                     sx={{
                         pt: { xs: 4, sm: 6 },
                         display: "grid",
-                        gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))" },
-                        columnGap: { sm: 8, md: 12 },
+                        gridTemplateColumns: { xs: "1fr", sm: "repeat(3, minmax(0, 1fr))" },
+                        columnGap: { sm: 6, md: 8 },
                         rowGap: { xs: 5, sm: 6 },
                     }}
                 >

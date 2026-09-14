@@ -18,18 +18,19 @@ const STAGES: Stage[] = [
     { id: "furnace1", x: 450, y: 178, w: 210, h: 62, tag: "02 · Thermal", title: "Heating Furnace", hot: true, desc: "The billet is heated to roughly 1,200–1,280°C, hot enough to make the steel plastic without melting it, ahead of piercing." },
     { id: "pierce", x: 450, y: 296, w: 185, h: 62, tag: "03 · Forming", title: "Piercing", desc: "A rotary piercing mill drives a plug through the center of the hot billet, converting the solid bar into a hollow shell in one pass." },
     { id: "furnace2", x: 450, y: 414, w: 230, h: 62, tag: "04 · Thermal", title: "Re-Heating Furnace", hot: true, desc: "The hollow shell is reheated to the correct temperature for elongation rolling, since piercing alone cools and stresses the steel." },
-    { id: "mother", x: 450, y: 532, w: 250, h: 66, tag: "05 · Intermediate", title: "Mother Hollow Tube", output: true, desc: "This is the common intermediate product for the whole plant — every finished tube, hot finished or cold drawn, starts from a mother hollow tube of this size." },
-    { id: "str1", x: 260, y: 830, w: 185, h: 62, tag: "06 · HFS", title: "Straightening", desc: "Fresh off the sizing mill, the hot finished tube passes through a straightener to correct ovality and camber picked up during rolling." },
-    { id: "hfs", x: 260, y: 936, w: 185, h: 66, tag: "07 · HFS Output", title: "HFS Tubes", output: true, desc: "Hot Finished Seamless tubes — finished directly from the hot-rolling line with no cold work, suited to structural and lower-tolerance applications." },
-    { id: "surf", x: 640, y: 830, w: 210, h: 62, tag: "08 · CDS", title: "Surface Treatment", desc: "Pickling and lubricant coating prepare the tube surface so it can pass through the cold-drawing die and plug without galling or tearing." },
-    { id: "draw", x: 640, y: 936, w: 210, h: 62, tag: "09 · CDS", title: "Cold Drawing", desc: "The tube is pulled through a precision die and internal plug at room temperature, tightening the OD, wall, and roundness tolerances well beyond hot-rolled limits." },
-    { id: "heat", x: 640, y: 1042, w: 210, h: 62, tag: "10 · CDS", title: "Heat Treatment", desc: "Normalizing or annealing relieves the internal stresses introduced by cold drawing and restores the steel’s mechanical properties." },
-    { id: "str2", x: 640, y: 1148, w: 210, h: 62, tag: "11 · CDS", title: "Straightening", desc: "A final straightening pass corrects any bow introduced during heat treatment before the tube rejoins the common line." },
-    { id: "ect", x: 450, y: 1290, w: 160, h: 62, tag: "12 · Test", title: "ECT", desc: "Eddy Current Testing sends an electromagnetic field through the tube wall to flag surface and near-surface flaws without cutting the tube open." },
-    { id: "hydro", x: 450, y: 1386, w: 185, h: 62, tag: "13 · Test", title: "Hydro Testing", desc: "Each tube is pressurized with water above its rated working pressure to confirm it holds without leaking or deforming." },
-    { id: "visual", x: 450, y: 1482, w: 210, h: 62, tag: "14 · Test", title: "Visual Inspection", desc: "Manual and automated checks confirm surface finish, dimensions, and end condition against the order specification." },
-    { id: "pack", x: 450, y: 1578, w: 230, h: 62, tag: "15 · Logistics", title: "Packing & Dispatch", desc: "Tubes are bundled, tagged with heat number and spec, and loaded for shipment — the last stop before they leave the mill." },
-    { id: "final", x: 450, y: 1684, w: 270, h: 70, tag: "16 · Finished Product", title: "Finished Seamless Tube", output: true, desc: "The finished tube, either HFS or CDS grade depending on the route it took, ready for the customer — traceable back to its original billet heat." },
+    { id: "sizing", x: 450, y: 532, w: 210, h: 62, tag: "05 · Forming", title: "Sizing", desc: "A sizing mill rolls the reheated hollow shell down to its final outside diameter and wall thickness. This step effectively fixes the tube's finished dimensions — the resulting mother hollow is already at hot-finished (HFS) tolerance, which is why the HFS route needs only straightening afterward." },
+    { id: "mother", x: 450, y: 650, w: 250, h: 66, tag: "06 · Intermediate", title: "Mother Hollow Tube", output: true, desc: "This is the common intermediate product for the whole plant — every finished tube, hot finished or cold drawn, starts from a mother hollow tube of this size." },
+    { id: "str1", x: 260, y: 948, w: 185, h: 62, tag: "07 · HFS", title: "Straightening", desc: "Fresh off the sizing mill, the hot finished tube passes through a straightener to correct ovality and camber picked up during rolling." },
+    { id: "hfs", x: 260, y: 1054, w: 185, h: 66, tag: "08 · HFS Output", title: "HFS Tubes", output: true, desc: "Hot Finished Seamless tubes — finished directly from the hot-rolling line with no cold work, suited to structural and lower-tolerance applications." },
+    { id: "surf", x: 640, y: 948, w: 210, h: 62, tag: "09 · CDS", title: "Surface Treatment", desc: "Pickling and lubricant coating prepare the tube surface so it can pass through the cold-drawing die and plug without galling or tearing." },
+    { id: "draw", x: 640, y: 1054, w: 210, h: 62, tag: "10 · CDS", title: "Cold Drawing", desc: "The tube is pulled through a precision die and internal plug at room temperature, tightening the OD, wall, and roundness tolerances well beyond hot-rolled limits." },
+    { id: "heat", x: 640, y: 1160, w: 210, h: 62, tag: "11 · CDS", title: "Heat Treatment", desc: "Normalizing or annealing relieves the internal stresses introduced by cold drawing and restores the steel’s mechanical properties." },
+    { id: "str2", x: 640, y: 1266, w: 210, h: 62, tag: "12 · CDS", title: "Straightening", desc: "A final straightening pass corrects any bow introduced during heat treatment before the tube rejoins the common line." },
+    { id: "ect", x: 450, y: 1408, w: 160, h: 62, tag: "13 · Test", title: "ECT", desc: "Eddy Current Testing sends an electromagnetic field through the tube wall to flag surface and near-surface flaws without cutting the tube open." },
+    { id: "hydro", x: 450, y: 1504, w: 185, h: 62, tag: "14 · Test", title: "Hydro Testing", desc: "Each tube is pressurized with water above its rated working pressure to confirm it holds without leaking or deforming." },
+    { id: "visual", x: 450, y: 1600, w: 210, h: 62, tag: "15 · Test", title: "Visual Inspection", desc: "Manual and automated checks confirm surface finish, dimensions, and end condition against the order specification." },
+    { id: "pack", x: 450, y: 1696, w: 230, h: 62, tag: "16 · Logistics", title: "Packing & Dispatch", desc: "Tubes are bundled, tagged with heat number and spec, and loaded for shipment — the last stop before they leave the mill." },
+    { id: "final", x: 450, y: 1802, w: 270, h: 70, tag: "17 · Finished Product", title: "Finished Seamless Tube", output: true, desc: "The finished tube, either HFS or CDS grade depending on the route it took, ready for the customer — traceable back to its original billet heat." },
 ];
 
 interface NodeProps {
@@ -210,25 +211,25 @@ export default function Flow() {
       `}</style>
 
             <div className="tpf-wrap">
-                <svg viewBox="0 0 900 1750" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 900 1868" xmlns="http://www.w3.org/2000/svg">
                     {/* spine lines (static) */}
-                    <path className="flow-line" d="M450,60 L450,630" />
-                    <path className="flow-line hfs" d="M450,630 C450,682 260,682 260,724 L260,768" />
-                    <path className="flow-line cds" d="M450,630 C450,682 640,682 640,724 L640,768" />
-                    <path className="flow-line hfs" d="M260,968 L260,1068 C260,1108 450,1108 450,1290" />
-                    <path className="flow-line cds" d="M640,1178 L640,1230 C640,1260 450,1260 450,1290" />
-                    <path className="flow-line" d="M450,1290 L450,1684" />
+                    <path className="flow-line" d="M450,60 L450,748" />
+                    <path className="flow-line hfs" d="M450,748 C450,800 260,800 260,842 L260,886" />
+                    <path className="flow-line cds" d="M450,748 C450,800 640,800 640,842 L640,886" />
+                    <path className="flow-line hfs" d="M260,1086 L260,1186 C260,1226 450,1226 450,1408" />
+                    <path className="flow-line cds" d="M640,1296 L640,1348 C640,1378 450,1378 450,1408" />
+                    <path className="flow-line" d="M450,1408 L450,1802" />
 
                     {/* animated flow overlays */}
-                    <path className="flow-dash main" d="M450,60 L450,630" />
-                    <path className="flow-dash hfs" d="M450,630 C450,682 260,682 260,724 L260,968" />
-                    <path className="flow-dash cds" d="M450,630 C450,682 640,682 640,724 L640,1178" />
-                    <path className="flow-dash main" d="M260,968 L260,1068 C260,1108 450,1108 450,1290" />
-                    <path className="flow-dash main" d="M640,1178 L640,1230 C640,1260 450,1260 450,1290" />
-                    <path className="flow-dash main" d="M450,1290 L450,1684" />
+                    <path className="flow-dash main" d="M450,60 L450,748" />
+                    <path className="flow-dash hfs" d="M450,748 C450,800 260,800 260,842 L260,1086" />
+                    <path className="flow-dash cds" d="M450,748 C450,800 640,800 640,842 L640,1296" />
+                    <path className="flow-dash main" d="M260,1086 L260,1186 C260,1226 450,1226 450,1408" />
+                    <path className="flow-dash main" d="M640,1296 L640,1348 C640,1378 450,1378 450,1408" />
+                    <path className="flow-dash main" d="M450,1408 L450,1802" />
 
-                    <text className="route-label hfs" x="180" y="748">HOT FINISHED (HFS)</text>
-                    <text className="route-label cds" x="565" y="748">COLD DRAWN (CDS)</text>
+                    <text className="route-label hfs" x="180" y="866">HOT FINISHED (HFS)</text>
+                    <text className="route-label cds" x="565" y="866">COLD DRAWN (CDS)</text>
 
                     <g id="nodes">
                         {STAGES.map((s) => (

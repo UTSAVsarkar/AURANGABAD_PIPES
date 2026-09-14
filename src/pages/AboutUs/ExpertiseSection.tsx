@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion';
 import AnimatedPoint from './AnimatedPoint';
 import { useInView } from 'react-intersection-observer';
-import { points } from './AboutConfig';
+import { paragraphs, commitments, closingStatement } from './AboutConfig';
 import { Color } from '../../colors';
 
-
 export default function ExpertiseSection() {
-  const { ref, inView } = useInView({
+  const { ref: bodyRef, inView: bodyInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const { ref: closingRef, inView: closingInView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -28,12 +32,38 @@ export default function ExpertiseSection() {
       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
       borderRadius: '16px'
     }}>
+
+      {/* Body copy */}
+      <motion.div
+        ref={bodyRef}
+        initial={{ opacity: 0, y: 30 }}
+        animate={bodyInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+        style={{ maxWidth: 900 }}
+      >
+        {paragraphs.map((para, index) => (
+          <p
+            key={index}
+            style={{
+              fontSize: index === 0 ? '1.3rem' : '1.1rem',
+              fontWeight: index === 0 ? 400 : 300,
+              color: index === 0 ? '#ffffff' : '#cfcfcf',
+              lineHeight: 1.8,
+              marginBottom: '1.75rem',
+            }}
+          >
+            {para}
+          </p>
+        ))}
+      </motion.div>
+
+      {/* Our Commitment */}
       <h2
         style={{
-          fontSize: '2.2rem',
-          marginBottom: '1rem',
+          fontSize: '2rem',
           fontWeight: 700,
-          lineHeight: 1.3,
+          marginTop: '2rem',
+          marginBottom: '2rem',
         }}
       >
         <span
@@ -42,45 +72,32 @@ export default function ExpertiseSection() {
             paddingBottom: 2,
           }}
         >
-          25+ Years
-        </span>{" "}
-        of Manufacturing Excellence
+          Our Commitment
+        </span>
       </h2>
-
-      <p
-        style={{
-          maxWidth: 850,
-          fontSize: "1.2rem",
-          color: "#cfcfcf",
-          lineHeight: 1.8,
-          margin: "0 auto 3rem",
-          fontWeight: 300,
-        }}
-      >
-        Manufacturing premium seamless carbon steel and alloy steel pipes &
-        tubes for boilers, oil & gas, power plants, automotive, and engineering
-        industries.
-      </p>
 
       <div style={{
         display: 'flex',
-        flexDirection: 'column',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
         gap: '1rem',
         width: '100%',
-        maxWidth: '900px'
+        maxWidth: '900px',
+        marginBottom: '2rem',
       }}>
-        {points.map((point, index) => (
-          <AnimatedPoint key={index} text={point} />
+        {commitments.map((item, index) => (
+          <AnimatedPoint key={index} text={item} variant="pill" />
         ))}
       </div>
 
+      {/* Closing statement */}
       <motion.div
-        ref={ref}
+        ref={closingRef}
         initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        animate={closingInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1, ease: 'easeOut' }}
         style={{
-          marginTop: '4rem',
+          marginTop: '3rem',
           padding: '3rem 2rem',
           maxWidth: '900px',
           background: 'rgba(255, 255, 255, 0.03)',
@@ -95,28 +112,10 @@ export default function ExpertiseSection() {
           boxShadow: '0 0 40px rgba(255, 165, 0, 0.05)',
         }}
       >
-        <p style={{ marginBottom: '1.5rem' }}>
-          Our <strong style={{ color: Color.blueGrey }}>seamless carbon steel</strong> and{' '}
-          <strong style={{ color: Color.blueGrey }}>alloy steel pipes & tubes</strong> are
-          manufactured using advanced production processes and stringent quality
-          control, ensuring exceptional strength, dimensional accuracy, and
-          reliable performance in demanding industrial environments.
-        </p>
-
         <p>
-          <span style={{ fontWeight: 500, color: '#ffffff' }}>AURANGABAD PIPES</span>{' '}
-          is committed to delivering products that meet{' '}
-          <strong style={{ color: Color.blueGrey }}>international quality standards</strong>,
-          serving the <strong style={{ color: Color.blueGrey }}>Boiler</strong>,{' '}
-          <strong style={{ color: Color.blueGrey }}>Oil & Gas</strong>,{' '}
-          <strong style={{ color: Color.blueGrey }}>Power</strong>,{' '}
-          <strong style={{ color: Color.blueGrey }}>Automotive</strong>, and{' '}
-          <strong style={{ color: Color.blueGrey }}>Engineering</strong> industries with
-          dependable, high-performance piping solutions.
+          {closingStatement}
         </p>
       </motion.div>
-
-
     </div>
   );
 }

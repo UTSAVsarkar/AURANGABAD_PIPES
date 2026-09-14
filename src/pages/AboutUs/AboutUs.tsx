@@ -27,12 +27,10 @@ function AboutUs() {
                     transition={{ duration: 1, ease: "easeIn" }}
                     style={{ marginTop: '2rem' }}
                 >
-                    <Typography variant="h4">At AURANGABAD PIPES</Typography>
+                    <Typography variant="h4">ABOUT US</Typography>
                     <h1 className="responsive-heading">
-                        We manufacture premium <br />
-                        seamless carbon steel <br />
-                        & alloy steel pipes and tubes <br />
-                        engineered for excellence
+                        Engineering Excellence. <br />
+                        Quality Without Compromise.
                     </h1>
                     <KeyboardDoubleArrowDown className="responsive-icon" />
                 </motion.div>

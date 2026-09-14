@@ -964,12 +964,7 @@ export default function MissionVision(props: Props) {
                                     mb: 3,
                                 }}
                             >
-                                At AURANGABAD PIPES, we bring
-                                25+ years of engineering and
-                                manufacturing expertise to help
-                                businesses streamline operations,
-                                optimize sourcing, and scale with
-                                data-driven precision.
+                                At AURANGABAD PIPES, we are committed to manufacturing and supplying high-quality seamless pipes and tubes that meet global standards and statutory requirements. With a focus on customer satisfaction, quality, and on-time delivery, we continuously improve our processes, strengthen our capabilities, and invest in employee expertise to deliver consistent excellence.
                             </Typography>
                         </motion.div>
 
@@ -993,14 +988,14 @@ export default function MissionVision(props: Props) {
                                 title: 'Our Mission',
 
                                 text:
-                                    'To help manufacturers, suppliers, and OEMs optimize resources and scale profitably through expert-led execution and data-driven strategies.',
+                                    'To manufacture and supply quality seamless pipes and tubes that meet customer requirements and applicable standards through reliable processes, competent people and continual improvement.',
                             },
 
                             {
                                 title: 'Our Vision',
 
                                 text:
-                                    'To be the go-to partner for manufacturers by connecting supply, strategy, and innovation for scalable, future-ready growth.',
+                                    'To be a trusted and globally recognized manufacturer of high-quality seamless pipes and tubes. Distinguished by quality, reliability, innovation, and customer excellence.',
                             },
 
                             {

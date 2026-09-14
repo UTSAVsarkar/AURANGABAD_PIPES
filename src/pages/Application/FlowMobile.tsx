@@ -15,27 +15,28 @@ const COMMON_TOP: Stage[] = [
     { id: "furnace1", tag: "02 · Thermal", title: "Heating Furnace", hot: true, desc: "The billet is heated to roughly 1,200–1,280°C, hot enough to make the steel plastic without melting it, ahead of piercing." },
     { id: "pierce", tag: "03 · Forming", title: "Piercing", desc: "A rotary piercing mill drives a plug through the center of the hot billet, converting the solid bar into a hollow shell in one pass." },
     { id: "furnace2", tag: "04 · Thermal", title: "Re-Heating Furnace", hot: true, desc: "The hollow shell is reheated to the correct temperature for elongation rolling, since piercing alone cools and stresses the steel." },
-    { id: "mother", tag: "05 · Intermediate", title: "Mother Hollow Tube", output: true, desc: "This is the common intermediate product for the whole plant — every finished tube, hot finished or cold drawn, starts from a mother hollow tube of this size." },
+    { id: "sizing", tag: "05 · Forming", title: "Sizing", desc: "A sizing mill rolls the reheated hollow shell down to its final outside diameter and wall thickness. This step effectively fixes the tube's finished dimensions — the resulting mother hollow is already at hot-finished (HFS) tolerance, which is why the HFS route needs only straightening afterward." },
+    { id: "mother", tag: "06 · Intermediate", title: "Mother Hollow Tube", output: true, desc: "This is the common intermediate product for the whole plant — every finished tube, hot finished or cold drawn, starts from a mother hollow tube of this size." },
 ];
 
 const HFS: Stage[] = [
-    { id: "str1", tag: "06 · HFS", title: "Straightening", route: "hfs", desc: "Fresh off the sizing mill, the hot finished tube passes through a straightener to correct ovality and camber picked up during rolling." },
-    { id: "hfs", tag: "07 · HFS Output", title: "HFS Tubes", output: true, route: "hfs", desc: "Hot Finished Seamless tubes — finished directly from the hot-rolling line with no cold work, suited to structural and lower-tolerance applications." },
+    { id: "str1", tag: "07 · HFS", title: "Straightening", route: "hfs", desc: "Fresh off the sizing mill, the hot finished tube passes through a straightener to correct ovality and camber picked up during rolling." },
+    { id: "hfs", tag: "08 · HFS Output", title: "HFS Tubes", output: true, route: "hfs", desc: "Hot Finished Seamless tubes — finished directly from the hot-rolling line with no cold work, suited to structural and lower-tolerance applications." },
 ];
 
 const CDS: Stage[] = [
-    { id: "surf", tag: "08 · CDS", title: "Surface Treatment", route: "cds", desc: "Pickling and lubricant coating prepare the tube surface so it can pass through the cold-drawing die and plug without galling or tearing." },
-    { id: "draw", tag: "09 · CDS", title: "Cold Drawing", route: "cds", desc: "The tube is pulled through a precision die and internal plug at room temperature, tightening the OD, wall, and roundness tolerances well beyond hot-rolled limits." },
-    { id: "heat", tag: "10 · CDS", title: "Heat Treatment", route: "cds", desc: "Normalizing or annealing relieves the internal stresses introduced by cold drawing and restores the steel’s mechanical properties." },
-    { id: "str2", tag: "11 · CDS", title: "Straightening", route: "cds", desc: "A final straightening pass corrects any bow introduced during heat treatment before the tube rejoins the common line." },
+    { id: "surf", tag: "09 · CDS", title: "Surface Treatment", route: "cds", desc: "Pickling and lubricant coating prepare the tube surface so it can pass through the cold-drawing die and plug without galling or tearing." },
+    { id: "draw", tag: "10 · CDS", title: "Cold Drawing", route: "cds", desc: "The tube is pulled through a precision die and internal plug at room temperature, tightening the OD, wall, and roundness tolerances well beyond hot-rolled limits." },
+    { id: "heat", tag: "11 · CDS", title: "Heat Treatment", route: "cds", desc: "Normalizing or annealing relieves the internal stresses introduced by cold drawing and restores the steel’s mechanical properties." },
+    { id: "str2", tag: "12 · CDS", title: "Straightening", route: "cds", desc: "A final straightening pass corrects any bow introduced during heat treatment before the tube rejoins the common line." },
 ];
 
 const COMMON_BOTTOM: Stage[] = [
-    { id: "ect", tag: "12 · Test", title: "ECT", desc: "Eddy Current Testing sends an electromagnetic field through the tube wall to flag surface and near-surface flaws without cutting the tube open." },
-    { id: "hydro", tag: "13 · Test", title: "Hydro Testing", desc: "Each tube is pressurized with water above its rated working pressure to confirm it holds without leaking or deforming." },
-    { id: "visual", tag: "14 · Test", title: "Visual Inspection", desc: "Manual and automated checks confirm surface finish, dimensions, and end condition against the order specification." },
-    { id: "pack", tag: "15 · Logistics", title: "Packing & Dispatch", desc: "Tubes are bundled, tagged with heat number and spec, and loaded for shipment — the last stop before they leave the mill." },
-    { id: "final", tag: "16 · Finished Product", title: "Finished Seamless Tube", output: true, desc: "The finished tube, either HFS or CDS grade depending on the route it took, ready for the customer — traceable back to its original billet heat." },
+    { id: "ect", tag: "13 · Test", title: "ECT", desc: "Eddy Current Testing sends an electromagnetic field through the tube wall to flag surface and near-surface flaws without cutting the tube open." },
+    { id: "hydro", tag: "14 · Test", title: "Hydro Testing", desc: "Each tube is pressurized with water above its rated working pressure to confirm it holds without leaking or deforming." },
+    { id: "visual", tag: "15 · Test", title: "Visual Inspection", desc: "Manual and automated checks confirm surface finish, dimensions, and end condition against the order specification." },
+    { id: "pack", tag: "16 · Logistics", title: "Packing & Dispatch", desc: "Tubes are bundled, tagged with heat number and spec, and loaded for shipment — the last stop before they leave the mill." },
+    { id: "final", tag: "17 · Finished Product", title: "Finished Seamless Tube", output: true, desc: "The finished tube, either HFS or CDS grade depending on the route it took, ready for the customer — traceable back to its original billet heat." },
 ];
 
 function StageCard({ stage, isOpen, onToggle }: { stage: Stage; isOpen: boolean; onToggle: () => void }) {
