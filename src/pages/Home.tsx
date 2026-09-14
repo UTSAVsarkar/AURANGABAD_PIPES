@@ -133,7 +133,7 @@ const Home: React.FC<Props> = ({ onNavChange }) => {
                 PARALLAX IMAGE
             ===================================================== */}
             <ParallaxImage
-                image={process.env.PUBLIC_URL + "/steel.jpeg"}
+                image={process.env.PUBLIC_URL + "/blue_pipes.jpeg"}
                 text="We believe business must look beyond itself to serve communities and build lasting impact."
                 author="Ratan Tata"
             />
